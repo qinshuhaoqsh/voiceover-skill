@@ -42,7 +42,8 @@ description: 用用户自己的克隆声音给中文科普短视频配音（千�
 
 - explainroo 的内置音乐：`calm` 没有鼓；`upbeat` 轻鼓；`tech` 稳定底鼓。用户要听得见鼓点。
 - explainroo 说话时自动把音乐压低 8 dB，加上音量偏低，鼓点会被埋掉。本机那份 explainroo 改过 `engine/audio/soundtrack.js`：从同目录 `mix.json` 读 `{"duckDb": -3, "musicGain": 1, "sfxGain": 1.6}`，没有这个文件就和原版一样。`video.json` 里 `music.volume` 最大 1。
-- 混音用户还没最终定（试听页 `声音对比/混音对比.html` 有 A 现在 / B 音乐加大 / C 音乐加大且说话时少压）；定了以后把数值写进这里。
+- **用户选定的混音（2026-11-26）**：`video.json` 里 `"music": {"style": "upbeat", "volume": 1.0}`（要听得见鼓点，别用没有鼓的 `calm`）；`mix.json` 为 `{"duckDb": -3, "musicGain": 1, "sfxGain": 1.6}`，即说话时音乐只压低 3 dB、音效加大 1.6 倍。新项目照这个设。
+- 换电脑或重装 explainroo 后，这个改动会丢：在 `engine/audio/soundtrack.js` 里把 `DUCK_DB`、音乐 `volume`、`scheduleSfx` 的 `volume` 分别乘上 `mix.json` 的三个值，再放好 `mix.json`。
 
 ## 注意
 
